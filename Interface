@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Admin Salary View";
+}
+
+<h2>All Employees' Salaries</h2>
+
+@if (Model != null && Model.Any())
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Salary</a>
+    </p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Employee</th>
+                <th>Month</th>
+                <th>Total Salary</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.User?.UserName</td>
+                    <td>@item.Month</td>
+                    <td>@item.TotalSalary.ToString("C")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
